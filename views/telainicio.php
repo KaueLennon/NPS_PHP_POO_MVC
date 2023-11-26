@@ -1,17 +1,18 @@
 <?php
 
-// session_start();
-// $email = $_SESSION['email'];
+session_start();
+$email = $_SESSION['email'];
 
-// require_once ('../controllers/usuarioController.php');
+require_once '../config/config.php';
+require_once ROOT . FOLDER_PATH .'/models/usuarioModel.php';
+require_once ROOT . FOLDER_PATH .'/controllers/usuarioController.php';
 
-// $obj = new usuarioController;
+$obj = new usuarioController;
 
-// $row = $obj->consultaEmailC($email)->fetch_assoc();
-// $perfil = $row['perfil'];
-// $primeiroNome = explode(" ", $row['nome'])[0];
-
-
+$row = $obj->consultaEmailC($email)->fetch(PDO::FETCH_ASSOC);
+$perfil = $row['perfil'];
+$nomeusuario = explode(" ", $row['nome']);
+$primeiroNome = $nomeusuario[0];
 
 ?>
 
@@ -126,6 +127,25 @@
             text-align: center;
         }  
 
+        .botaosair{
+            padding: 8px 8px;
+            background-color: red;
+            color: white;
+            border-radius: 10px;
+            border: 2px solid black;
+            text-decoration: none;
+            text-align: center;
+            width: 75px;
+            height: 100%;
+        }
+
+        .container1{
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            background-color: black;
+            justify-content: space-between;
+        }
         
 
     </style>
@@ -133,17 +153,17 @@
 <body>
     <input type="checkbox" id="chec">
     <label for="chec">
-        <img src="imagens/menu2.png">
+    <img src="../imagens/menu2.png">
     </label>
     <nav>
-        <ul><?php 
+    <ul><?php 
             if($perfil === 'administrador'){
                 echo '<li><a href="ger_usuario.php">GERENCIAR USUÁRIO</a></li>';
                 echo '<li><a href="ger_pergunta.php">GERENCIAR PERGUNTAS</a></li>';
                 echo '<li><a href="extracaoexcel.php">EXPORTAR DADOS</a></li>';
             }
             ?>
-            <li><a href="sair.php">SAIR</a></li>
+            <li><a href="../config/sair.php">SAIR</a></li>
         </ul>
     </nav>
     <h1 class="titulo_superior">Pesquisa NPS 3R</h1>

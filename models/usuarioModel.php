@@ -1,6 +1,7 @@
 <?php
-echo "usuarioModel Ok";
-require_once('../configuration/connect.php');
+
+require_once ("../config/config.php");
+require_once ROOT . FOLDER_PATH .'/configuration/connect.php';
 
 class UsuarioModel  extends Connect {
     private $table;
@@ -117,6 +118,7 @@ class UsuarioModel  extends Connect {
             return $resultQuery;
         }
 
+        //metodo utilizado no telainicio.php
         function consultaEmail($email){
             $sqlConsultaEmail = $this->connection->query("SELECT * FROM $this->table WHERE email = '$email'");
             $resultQuery = $sqlConsultaEmail;
@@ -125,9 +127,9 @@ class UsuarioModel  extends Connect {
 
         function login($email, $senha){
             $sqlLogin = $this->connection->query("SELECT * FROM $this->table WHERE email = '$email' and senha = '$senha'");
-            $resultQuery = $sqlLogin;
+            $resultQuery = $sqlLogin->fetch(PDO::FETCH_ASSOC);
             return $resultQuery;
-            }
+        }
 }
 
 ?>

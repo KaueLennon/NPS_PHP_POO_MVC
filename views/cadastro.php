@@ -2,8 +2,8 @@
 
 if(isset($_POST['submit']))
 { 
-
-    require_once ('../models/usuarioModel.php');
+    require_once ("../config/config.php");
+    require_once ROOT . FOLDER_PATH .'/models/usuarioModel.php';
 
     $usuario = new UsuarioModel;
 
@@ -18,7 +18,7 @@ if(isset($_POST['submit']))
     $usuario->endereco = $_POST['endereco'];
     $usuario->perfil = "usuario";
 
-    require_once ('../controllers/usuarioController.php');
+    require_once ROOT . FOLDER_PATH .'/controllers/usuarioController.php';
     $ObjUsuario = new usuarioController;
     $ObjUsuario->cadastrarUsuarioC($usuario->nome, $usuario->senha, $usuario->email, $usuario->telefone, $usuario->sexo, $usuario->data_nasc, $usuario->cidade, $usuario->estado, $usuario->endereco, $usuario->perfil);
 }
@@ -135,7 +135,7 @@ if(isset($_POST['submit']))
     </style>
 </head>
 <body>
-    <a href="../home.php">Voltar</a>
+    <a href="./home.php">Voltar</a>
     <div class="box">
         <form action="" method="POST">
             <fieldset>

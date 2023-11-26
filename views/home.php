@@ -1,21 +1,22 @@
 <?php
 
+session_start();
+
 if(isset($_POST['submit'])){
 
-    require_once ('./models/usuarioModel.php');
-    require_once ('./controllers/usuarioController.php');
+    require_once '../config/config.php';
+    require_once ROOT . FOLDER_PATH .'/models/usuarioModel.php';
+    require_once ROOT . FOLDER_PATH .'/controllers/usuarioController.php';
 
-    // $usuario = new UsuarioModel;
-    // $logue = new usuarioController;
+    $usuario = new UsuarioModel;
+    $logue = new usuarioController;
 
-    // $email = $_POST['email'];
-    // $senha = $_POST['senha'];
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
 
-    // $usuario->email =  $email;
-    // $usuario->senha =  $senha;
-    // $resultLogin = $logue->loginC($email, $senha);
-
-    echo "Ate aqui deu certo!";
+    $usuario->email =  $email;
+    $usuario->senha =  $senha;
+    $logue->loginC($email, $senha);
 
 }
 
@@ -96,7 +97,7 @@ if(isset($_POST['submit'])){
 </head>
 <body>
     <div class="tela-login">
-        <img class="logo3r" src="imagens/3rlogo.png" alt="Logo 3R">
+        <img class="logo3r" src="../imagens/3rlogo.png" alt="Logo 3R">
         <form action="" method="POST">
             <h1>Login</h1>
             <input class="input-tlogin" type="text" name="email" placeholder="Email">
@@ -105,7 +106,7 @@ if(isset($_POST['submit'])){
             <br><br>
             <input class="inputSubmit" type="submit" name="submit" value="Entrar">
             <p>Ainda não tem conta?</p>
-            <a href="./views/cadastro.php" class="button-cadastra">Cadastre-se</a>
+            <a href="./cadastro.php" class="button-cadastra">Cadastre-se</a>
         </form>
     </div>
 </body>
