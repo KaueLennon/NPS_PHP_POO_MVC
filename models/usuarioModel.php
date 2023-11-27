@@ -114,7 +114,7 @@ class UsuarioModel  extends Connect {
         //Metodo para cadastrar usuario no BD
         function cadastrarUsuario($nome, $senha, $email, $telefone, $sexo, $data_nasc, $cidade, $estado, $endereco, $perfil){
             $sqlSelect = $this->connection->query("INSERT INTO $this->table (nome, senha, email, telefone, sexo, data_nasc, cidade, estado,endereco,perfil) VALUES ('$nome', '$senha', '$email', '$telefone', '$sexo', '$data_nasc', '$cidade', '$estado', '$endereco', '$perfil') ");
-            $resultQuery = $sqlSelect->fetchAll();
+            $resultQuery = $sqlSelect->fetch(PDO::FETCH_ASSOC);
             return $resultQuery;
         }
 
@@ -125,11 +125,71 @@ class UsuarioModel  extends Connect {
             return $resultQuery;
         }
 
+        //metodo para realizar o login do ususario na tela home.php
         function login($email, $senha){
             $sqlLogin = $this->connection->query("SELECT * FROM $this->table WHERE email = '$email' and senha = '$senha'");
             $resultQuery = $sqlLogin->fetch(PDO::FETCH_ASSOC);
             return $resultQuery;
         }
+
+        //metodo para consultar TODOS os usuarios e exibir na tela ger_usuario.php
+        function consultaUsuarios($nomesearch){
+            $sql = $this->connection->query("SELECT * FROM $this->table WHERE nome LIKE '%$nomesearch%' or email LIKE '%$nomesearch%' ORDER BY nome ASC");
+            $resultQuery = $sql->fetchall(PDO::FETCH_ASSOC);
+            return $resultQuery;
+        }
+
+        //metodo para consultar NENHUM usuario e exibir na tela ger_usuario.php
+        function consultaUsuarios2(){
+            $sql = $this->connection->query("SELECT * FROM $this->table WHERE nome = ''");
+            $resultQuery = $sql->fetchall(PDO::FETCH_ASSOC);
+            return $resultQuery;
+        }
+
+        //Metodo para consultar um usuário por ID no editUsuario.php
+        function consultarUsuarioID($id){
+            $sql = $this->connection->query("SELECT * FROM $this->table WHERE idusuario = '$id'");
+            $resultQuery = $sql->fetchall(PDO::FETCH_ASSOC);
+            return $resultQuery;
+        }
+
+        // Metodo para editar e atualizar usuarios
+        function editarUsuarios($id, $nome, $email, $telefone, $sexo, $data_nasc, $cidade, $estado, $endereco, $perfil){
+            $sql = $this->connection->query("UPDATE $this->table SET 
+            nome = '$nome',
+            email = '$email',
+            telefone = '$telefone',
+            sexo = '$sexo',
+            data_nasc = '$data_nasc',
+            cidade = '$cidade',
+            estado = '$estado',
+            endereco = '$endereco',
+            perfil = '$perfil'
+        WHERE idusuario = '$id'");
+        }
+
+        // Metodo para deletar o usuario selecionado na pag ger_usuario.php conforme a id dele (resgatada no GET_ID)
+        function deleteUsuario($id) {
+            try {
+                $stmt = $this->connection->prepare("DELETE FROM usuario WHERE idusuario = :id");
+                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+                $stmt->execute();
+
+                $rowCount = $stmt->rowCount();
+
+                if ($rowCount > 0) {
+                    return true; // Exclusão bem-sucedida
+                } else {
+                    return false; // Nenhuma linha foi afetada, a exclusão falhou
+                }
+            } catch (PDOException $e) {
+                echo "Erro ao excluir usuário: " . $e->getMessage();
+                return false; // Retorna false em caso de falha
+        }
+
+        
 }
 
-?>
+
+}?>

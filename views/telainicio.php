@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+
 $email = $_SESSION['email'];
 
 require_once '../config/config.php';
@@ -13,6 +14,7 @@ $row = $obj->consultaEmailC($email)->fetch(PDO::FETCH_ASSOC);
 $perfil = $row['perfil'];
 $nomeusuario = explode(" ", $row['nome']);
 $primeiroNome = $nomeusuario[0];
+$_SESSION['primeironome'] = $primeiroNome;
 
 ?>
 
