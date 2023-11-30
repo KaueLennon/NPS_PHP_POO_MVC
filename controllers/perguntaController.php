@@ -40,6 +40,11 @@ function deletePerguntaC($id){
     echo "<script>alert('Pergunta deletada com sucesso!'); window.location.href='../views/ger_pergunta.php';</script>";
 }
 
+function adicionarPerguntaC($pergunta, $tipo, $sequencia){
+    $result = $this->modelo->adicionarPergunta($pergunta, $tipo, $sequencia);
+    echo "<script>alert('Pergunta adicionada!'); window.location.href='../views/ger_pergunta.php';</script>";
+}
+
 
 
 }?>

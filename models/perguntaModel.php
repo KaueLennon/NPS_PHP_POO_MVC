@@ -73,5 +73,10 @@ public $tipo;
         $sql = $this->connection->query("DELETE FROM $this->table WHERE id = $id");
         return $sql;
     }
+
+    function adicionarPergunta($pergunta, $tipo, $sequencia){
+        $sql = $this->connection->query("INSERT INTO pergunta (pergunta, sequencia, tipo) VALUES ('$pergunta', '$sequencia', '$tipo')");
+        return $sql;
+    }
     
 }?>

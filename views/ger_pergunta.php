@@ -10,6 +10,15 @@ $result = $obj->consultaPerguntasC();
 $nova_pergunta = $result->rowCount() +1;
 $primeiroNome = $_SESSION['primeironome'];
 
+if(isset($_POST['submit'])){
+  $pergunta = $_POST['pergunta'];
+  $tipo = $_POST['tipo'];
+  $sequencia = $_POST['sequencia'];
+
+  $obj->adicionarPerguntaC($pergunta, $tipo, $sequencia);
+
+}
+
 ?>
 
 <!doctype html>
@@ -161,7 +170,7 @@ $primeiroNome = $_SESSION['primeironome'];
       <!-- botão adicionar pergunta -->
       <div class="div_adc_perg">  
       <button class="btn btn-light" onclick="mostrarCampos()" class="botao_adc_perg" >Adicionar Pergunta</button>
-        <form id="formPergunta" class="hidden" action="adicionarPergunta.php" method="POST">
+        <form id="formPergunta" class="hidden" action="" method="POST">
                   <label for="pergunta">Questão:</label>
                   <input class="input_adc_perg" type="text" id="pergunta" name="pergunta" placeholder="Escreva a pergunta">
                   <label for="tipo" class="form_pergunta_adc">Tipo:</label>
