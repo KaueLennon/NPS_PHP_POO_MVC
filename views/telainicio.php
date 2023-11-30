@@ -1,20 +1,20 @@
 <?php
 
 session_start();
-
 $email = $_SESSION['email'];
+
 
 require_once '../config/config.php';
 require_once ROOT . FOLDER_PATH .'/models/usuarioModel.php';
 require_once ROOT . FOLDER_PATH .'/controllers/usuarioController.php';
 
 $obj = new usuarioController;
-
 $row = $obj->consultaEmailC($email)->fetch(PDO::FETCH_ASSOC);
 $perfil = $row['perfil'];
 $nomeusuario = explode(" ", $row['nome']);
 $primeiroNome = $nomeusuario[0];
 $_SESSION['primeironome'] = $primeiroNome;
+$obj->verificarLogged(); //Verifica se há alguem logado, caso não tenha é redirecionado para a tela home.php
 
 ?>
 

@@ -171,25 +171,30 @@ class UsuarioModel  extends Connect {
         // Metodo para deletar o usuario selecionado na pag ger_usuario.php conforme a id dele (resgatada no GET_ID)
         function deleteUsuario($id) {
             try {
-                $stmt = $this->connection->prepare("DELETE FROM usuario WHERE idusuario = :id");
-                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+                    $stmt = $this->connection->prepare("DELETE FROM usuario WHERE idusuario = :id");
+                    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
-                $stmt->execute();
+                    $stmt->execute();
 
-                $rowCount = $stmt->rowCount();
+                    $rowCount = $stmt->rowCount();
 
-                if ($rowCount > 0) {
-                    return true; // Exclusão bem-sucedida
-                } else {
-                    return false; // Nenhuma linha foi afetada, a exclusão falhou
-                }
+                    if ($rowCount > 0) {
+                        return true; // Exclusão bem-sucedida
+                    } else {
+                        return false; // Nenhuma linha foi afetada, a exclusão falhou
+                    }
             } catch (PDOException $e) {
                 echo "Erro ao excluir usuário: " . $e->getMessage();
                 return false; // Retorna false em caso de falha
+            }
         }
 
-        
-}
+        //Metodo para consultar a views 'visao_pesquisa' no BD
+        function consultaPesquisa($datainicio, $datafim){
+            $sql = $this->connection->query("SELECT * FROM visao_pesquisa WHERE data_pesquisa BETWEEN '$datainicio' AND '$datafim' ORDER BY data_pesquisa ASC, numero_questao ASC");
+            $resultQuery = $sql->fetchall(PDO::FETCH_ASSOC);
+            return $resultQuery;
+        }
 
 
 }?>

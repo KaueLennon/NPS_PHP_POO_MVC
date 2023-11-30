@@ -22,6 +22,13 @@ class usuarioController {
         return $result;
     }
 
+    //Metodo para verificar se esta logado no sistema
+    function verificarLogged(){
+        if(empty($_SESSION['email'])){
+            header('Location: ./home.php');
+        }
+    }
+
 
     //Metodo para logar o usuario
     function loginC($email, $senha){
@@ -90,6 +97,20 @@ class usuarioController {
         header('Location: ../views/ger_usuario.php');
     }
 
+    // Metodo para retrisção de usuarios. Apenas administrador pode acessar onde o metodo é setado
+    function verificarPerfil($email){
+        $result = $this->model->consultaEmail($email)->fetch(PDO::FETCH_ASSOC);
+        $perfil = $result['perfil'];
+        if($perfil != 'administrador'){
+            header('Location: ../views/telainicio.php');
+        }
+    }
+
+    //Metodo para consultar a views 'visao_pesquisa' no BD 
+    function consultaPesquisasC($datainicio, $datafim){
+    $result = $this->model->consultaPesquisa($datainicio, $datafim);
+    return $result;
+    }
 
 
 }?>
