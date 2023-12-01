@@ -75,8 +75,33 @@ public $tipo;
     }
 
     function adicionarPergunta($pergunta, $tipo, $sequencia){
-        $sql = $this->connection->query("INSERT INTO pergunta (pergunta, sequencia, tipo) VALUES ('$pergunta', '$sequencia', '$tipo')");
+        $sql = $this->connection->query("INSERT INTO $this->table (pergunta, sequencia, tipo) VALUES ('$pergunta', '$sequencia', '$tipo')");
         return $sql;
     }
+
+    function salvarRespostas($resposta, $user, $fk_pergunta, $cod)
+{
+    try {
+        $stmt = $this->connection->prepare("INSERT INTO resposta (resposta, user, fk_pergunta, cod_pesquisa, data_pesquisa) VALUES (:resposta, :user, :fk_pergunta, :cod, NOW())");
+
+        $stmt->bindValue(':resposta', $resposta, PDO::PARAM_STR);
+        $stmt->bindValue(':user', $user, PDO::PARAM_STR);
+        $stmt->bindValue(':fk_pergunta', $fk_pergunta, PDO::PARAM_INT);
+        $stmt->bindValue(':cod', $cod, PDO::PARAM_INT);
+
+        $stmt->execute();
+        
+        return true;
+    } catch (PDOException $e) {
+        echo "Erro ao inserir respostas: " . $e->getMessage();
+        return false;
+    }
+}
+
+function consultaRegras(){
+    $sql = $this->connection->query("SELECT * FROM regra ORDER BY pergunta ASC");
+    return $sql;
+}
+
     
 }?>

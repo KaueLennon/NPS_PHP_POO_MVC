@@ -45,6 +45,14 @@ function adicionarPerguntaC($pergunta, $tipo, $sequencia){
     echo "<script>alert('Pergunta adicionada!'); window.location.href='../views/ger_pergunta.php';</script>";
 }
 
+function salvarRespostas($resposta, $user, $fk_pergunta, $cod){
+    $result = $this->modelo->salvarRespostas($resposta, $user, $fk_pergunta, $cod);
+}
+
+function consultaRegras(){
+    $result = $this->modelo->consultaRegras();
+    return $result;
+}
 
 
 }?>

@@ -1,28 +1,29 @@
 <?php
+        require_once '../config/config.php';
+        require_once ROOT . FOLDER_PATH .'/models/perguntaModel.php';
+        require_once ROOT . FOLDER_PATH .'/controllers/perguntaController.php';
+        
         session_start();
-        
-        
         $logado = $_SESSION['email'];
-
         $cod_pesquisa = time();
 
+        $obj = new perguntaController;
+        $result = $obj->consultaPerguntasC();
 
+        if (isset($_POST['submit'])) {
 
-        if(count($_POST) == count($result)){
-    
-            $stmt = $conexao->prepare("INSERT INTO resposta (resposta, user, fk_pergunta,cod_pesquisa, data_pesquisa) VALUES (?, ?, ?, ?, NOW())");
-            $stmt->bind_param("ssid",$resposta, $user, $fk_pergunta, $cod_pesquisaa);
-            
-            foreach ($result as $arr_result) {
-                $resposta = $_POST['pergunta'.$arr_result[2]];
+            foreach($result as $arr_result){
+                $resposta = $_POST['pergunta'.$arr_result[2]]; //numero sequencia da pergunta
                 $user = $logado;
-                $fk_pergunta = $arr_result[0];
-                $cod_pesquisaa = $cod_pesquisa;
-                $stmt->execute();
+                $fk_pergunta = $arr_result[0]; //ID da pergunta
+                $cod = $cod_pesquisa; //Data da pesquisa que vira o código de validação
+                $obj->salvarRespostas($resposta, $user, $fk_pergunta, $cod);
             }
-    
+
             header('Location: encerramento.php');
         }
+
+        $regras = $obj->consultaRegras();
     ?>
 
     <!DOCTYPE html>
@@ -169,10 +170,10 @@
         
         <div class="container1">
             <a href="telainicio.php">
-                <img class="logo3r" src="imagens/3rlogo.png" alt="Logo 3R">
+                <img class="logo3r" src="../imagens/3rlogo.png" alt="Logo 3R">
             </a>
             <h1 class="titulopag">Formulário de Pesquisa de Satisfação</h1>
-            <a href="sair.php" class="botaosair">Sair</a>
+            <a href="../config/sair.php" class="botaosair">Sair</a>
         </div>
         
         <div class="pesquisa">
@@ -200,7 +201,7 @@
                             </fieldset>     
                     <?php }?>
                 <br><br>    
-                <input class="inputSubmit" type="submit" value="Enviar">
+                <input class="inputSubmit" type="submit" name="submit" value="Enviar">
             </form>
         </div>
     </body>

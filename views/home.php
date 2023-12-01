@@ -34,7 +34,11 @@ if(isset($_POST['submit'])){
 
        body {
         font-family: Arial, Helvetica, sans-serif;
-        background-image: linear-gradient(45deg, #3C7FE8, #16e7c4);
+        /* background-image: linear-gradient(45deg, #3C7FE8, #16e7c4); */
+        background-image: url('../imagens/fundo.jpg');
+        background-size: cover; /* Ajusta o tamanho da imagem para cobrir todo o corpo */
+        background-repeat: no-repeat; /* Evita a repetição da imagem */
+        background-attachment: fixed; /* Mantém a imagem fixa mesmo ao rolar a página */
        }
 
        .logo3r {
@@ -46,7 +50,7 @@ if(isset($_POST['submit'])){
        }
 
        .tela-login {
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: rgba(127, 127, 127, 0.8);
         position: absolute;
         top: 50%;
         left: 50%;
