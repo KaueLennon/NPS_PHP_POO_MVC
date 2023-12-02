@@ -1,7 +1,9 @@
 <?php
 
-require_once ("../config/config.php");
-require_once ROOT . FOLDER_PATH .'/connection/connect.php';
+// require_once ("../config/config.php");
+// require_once ROOT . FOLDER_PATH .'/connection/connect.php';
+
+require_once 'C:/xampp/htdocs/Pesquisa_NPS/connection/connect.php';
 
 class UsuarioModel  extends Connect {
     private $table;

@@ -1,7 +1,9 @@
 <?php
 
-require_once ("../config/config.php");
-require_once ROOT . FOLDER_PATH .'/models/usuarioModel.php';
+// require_once ("../config/config.php");
+// require_once ROOT . FOLDER_PATH .'/models/usuarioModel.php';
+
+require_once 'C:/xampp/htdocs/Pesquisa_NPS/models/usuarioModel.php';
 
 class usuarioController {
     private $model;
@@ -20,6 +22,11 @@ class usuarioController {
     function consultaEmailC($email){
         $result = $this->model->consultaEmail($email);
         return $result;
+        if($result){
+            return $result;
+        }else {
+            return false;
+        }
     }
 
     //Metodo para verificar se esta logado no sistema
