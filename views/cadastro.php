@@ -4,6 +4,19 @@ if(isset($_POST['submit']))
 { 
     require_once ("../config/config.php");
     require_once ROOT . FOLDER_PATH .'/models/usuarioModel.php';
+    require_once ROOT . FOLDER_PATH .'/controllers/usuarioController.php';
+
+    $ObjUsuario = new usuarioController;
+
+    $email = $_POST['email'];
+
+    $emailExistente = $ObjUsuario->consultaEmailC($email);
+
+    //Teste para ver se o e-mail cadastro existe no BD, caso existe ele não será cadastrado.
+    if($emailExistente->rowCount() > 0){
+        echo "<script>alert('Esse cadastro já existe, por favor verificar outro e-mail.'); window.location.href='./cadastro.php';</script>";
+        exit();
+    }
 
     $usuario = new UsuarioModel;
 
@@ -18,8 +31,7 @@ if(isset($_POST['submit']))
     $usuario->endereco = $_POST['endereco'];
     $usuario->perfil = "usuario";
 
-    require_once ROOT . FOLDER_PATH .'/controllers/usuarioController.php';
-    $ObjUsuario = new usuarioController;
+    
     $ObjUsuario->cadastrarUsuarioC($usuario->nome, $usuario->senha, $usuario->email, $usuario->telefone, $usuario->sexo, $usuario->data_nasc, $usuario->cidade, $usuario->estado, $usuario->endereco, $usuario->perfil);
 }
 

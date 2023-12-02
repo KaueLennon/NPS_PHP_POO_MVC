@@ -1,7 +1,7 @@
 <?php
 
 require_once ("../config/config.php");
-require_once ROOT . FOLDER_PATH .'/configuration/connect.php';
+require_once ROOT . FOLDER_PATH .'/connection/connect.php';
 
 class PerguntaModel extends Connect {
 private $table;

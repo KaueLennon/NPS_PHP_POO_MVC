@@ -12,8 +12,8 @@ class usuarioController {
 
     //Metodo que cadastra o usuario na tabela Usuario no BD
     function cadastrarUsuarioC($nome, $senha, $email, $telefone, $sexo, $data_nasc, $cidade, $estado, $endereco, $perfil){
-        $resultInsert = $this->model->cadastrarUsuario($nome, $senha, $email, $telefone, $sexo, $data_nasc, $cidade, $estado, $endereco, $perfil);
-        header('Location: ./home.php');
+        $resultInsert = $this->model->cadastrarUsuario($nome, $senha, $email, $telefone, $sexo, $data_nasc, $cidade, $estado, $endereco, $perfil);  
+        echo "<script>alert('Seu cadastro foi realizado com sucesso!'); window.location.href='../views/home.php';</script>";
     }
 
     // Metodo utilizado no telainicio.php
@@ -37,12 +37,13 @@ class usuarioController {
         if(!$result){
             unset($_SESSION['email']);
             unset($_SESSION['senha']);
-            header('Location: ../views/home.php');
+            echo "<script>alert('Senha ou usuário incorretos.'); window.location.href='../views/home.php';</script>";
         }else {
             $_SESSION['email'] = $email;
             header('Location: ../views/telainicio.php');
         }
     }
+
 
 
     //Metodo para deslogar o usuario

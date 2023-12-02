@@ -99,6 +99,7 @@ if(isset($_POST['submit'])){
         color: white;
        }
     </style>
+    
 </head>
 <body>
     <div class="tela-login">
@@ -107,7 +108,7 @@ if(isset($_POST['submit'])){
             <h1>Login</h1>
             <input class="input-tlogin" type="text" name="email" placeholder="Email">
             <br><br>
-            <input class="input-tlogin" type="password" name="senha" placeholder="Senha">
+            <input class="input-tlogin" type="password" name="senha" id="senha" placeholder="Senha">
             <br><br>
             <input class="inputSubmit" type="submit" name="submit" value="Entrar">
             <p>Ainda não tem conta?</p>
