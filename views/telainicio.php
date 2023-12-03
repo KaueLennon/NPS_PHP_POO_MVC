@@ -26,19 +26,24 @@ $obj->verificarLogged(); //Verifica se há alguem logado, caso não tenha é red
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela Inicial</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:wght@400;600&display=swap');
 
         body{
             font-family: Arial, Helvetica, sans-serif;
-            background-image: linear-gradient(45deg, #3C7FE8, #16e7c4);
+            /* background-image: linear-gradient(45deg, #3C7FE8, #16e7c4); */
+            background-image: url('../imagens/fundopaginit2.png');
+            background-size: cover; 
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             height: 100vh;
         }
 
         .titulo_superior {
-            font-size: 30px;
-            font-family: Arial, Helvetica, sans-serif;
+            font-size: 35px;
+            font-family: 'roboto', sans-serif;
             padding: 15px;
             color: white;
             text-align: center;
@@ -168,7 +173,7 @@ $obj->verificarLogged(); //Verifica se há alguem logado, caso não tenha é red
             <li><a href="../config/sair.php">SAIR</a></li>
         </ul>
     </nav>
-    <h1 class="titulo_superior">Pesquisa NPS 3R</h1>
+    <h1 class="titulo_superior">Pesquisa Satisfação - Brasa Chef</h1>
     <div class="tela">
         <h2 class="titulo_1">Olá <?php echo $primeiroNome ?>, para iniciar a pesquisa clique no botão abaixo:</h1>
         <a class="botaoIniciarPesq" href="pesquisa.php">PESQUISA</a>

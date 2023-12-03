@@ -1,4 +1,14 @@
 <?php
+require_once ('../config/config.php');
+require_once ROOT . FOLDER_PATH .'/models/usuarioModel.php';
+require_once ROOT . FOLDER_PATH .'/controllers/usuarioController.php';
+
+session_start();
+
+$objusuario = new usuarioController;
+$objusuario->verificarLogged(); //Verifica se há alguem logado, caso não tenha é redirecionado para a tela home.php
+$email = $_SESSION['email'];
+$objusuario->verificarPerfil($email);
 
 if(!empty($_GET['id']))
 {
@@ -6,6 +16,9 @@ if(!empty($_GET['id']))
 require_once ('../config/config.php');
 require_once ROOT . FOLDER_PATH .'/models/perguntaModel.php';
 require_once ROOT . FOLDER_PATH .'/controllers/perguntaController.php';
+
+
+
 
 $id = $_GET['id']; 
 
@@ -52,10 +65,14 @@ if(isset($_POST['update'])){
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tela Edição Usuário</title>
 <style>
-body{
-font-family: Arial, Helvetica, sans-serif;
-background-image: linear-gradient(to right, #3C7FE8, #16e7c4);
-}
+    body{
+    font-family: Arial, Helvetica, sans-serif;
+    /* background-image: linear-gradient(to right, #3C7FE8, #16e7c4); */
+    background-image: url('../imagens/fundoembacado.png');
+    background-size: cover; /* Ajusta o tamanho da imagem para cobrir todo o corpo */
+    background-repeat: no-repeat; /* Evita a repetição da imagem */
+    background-attachment: fixed; /* Mantém a imagem fixa mesmo ao rolar a página */
+    }
 
     .box{
         color: white;

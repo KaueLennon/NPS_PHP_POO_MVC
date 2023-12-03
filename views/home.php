@@ -28,14 +28,14 @@ if(isset($_POST['submit'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../imagens/rest.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../imagens/logo2.png" type="image/x-icon">
     <title>Tela Login</title>
     <style>
 
        body {
         font-family: Arial, Helvetica, sans-serif;
         /* background-image: linear-gradient(45deg, #3C7FE8, #16e7c4); */
-        background-image: url('../imagens/fundo.jpg');
+        background-image: url('../imagens/fundoembacado.png');
         background-size: cover; /* Ajusta o tamanho da imagem para cobrir todo o corpo */
         background-repeat: no-repeat; /* Evita a repetição da imagem */
         background-attachment: fixed; /* Mantém a imagem fixa mesmo ao rolar a página */
@@ -103,7 +103,7 @@ if(isset($_POST['submit'])){
 </head>
 <body>
     <div class="tela-login">
-        <img class="logo3r" src="../imagens/3rlogo.png" alt="Logo 3R">
+        <img class="logo3r" src="../imagens/logogrey.png" alt="Logo 3R">
         <form action="" method="POST">
             <h1>Login</h1>
             <input class="input-tlogin" type="text" name="email" placeholder="Email">

@@ -45,11 +45,16 @@ if(isset($_POST['submit']))
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../imagens/logo2.png" type="image/x-icon">
     <title>Tela de Cadastro</title>
     <style>
         body{
             font-family: Arial, Helvetica, sans-serif;
-            background-image: linear-gradient(to right, #3C7FE8, #16e7c4);
+            /* background-image: linear-gradient(to right, #3C7FE8, #16e7c4); */
+            background-image: url('../imagens/fundoembacado.png');
+            background-size: cover; /* Ajusta o tamanho da imagem para cobrir todo o corpo */
+            background-repeat: no-repeat; /* Evita a repetição da imagem */
+            background-attachment: fixed; /* Mantém a imagem fixa mesmo ao rolar a página */
         }
 
         .box{
@@ -58,21 +63,21 @@ if(isset($_POST['submit']))
             top: 50%;
             left: 50%;
             transform: translate(-50%,-50%);
-            background-color: rgba(0,0,0,0.8);
+            background-color: rgba(127,127,127,0.8);
             padding: 15px;
             border-radius: 15px;
             width: 30%;
         }
 
         fieldset{
-            border: 3px solid #048a8f;
+            border: 3px solid black;
         }
 
         legend{
-            border: 1px solid #048a8f;
+            border: none;
             padding: 10px;
             text-align: center;
-            background-color: #048a8f;
+            background-color: black;
             border-radius: 8px;
             color: white;
         }
@@ -103,7 +108,8 @@ if(isset($_POST['submit']))
         .inputUser:valid ~ .labelInput{
             top: -15px;
             font-size: 10px;
-            color: aqua;
+            color: black;
+            font-weight: bold;
         }
 
         #data_nascimento {
@@ -119,7 +125,7 @@ if(isset($_POST['submit']))
             border-radius: 7px;
             outline: none;
             border: none;
-            background-color: #3C7FE8;
+            background-color: rgb(14,4,106);
             color: white;
             font-weight: 100%;
             font-size: 18px;
@@ -128,8 +134,8 @@ if(isset($_POST['submit']))
         }
 
         #submit:hover{
-            background-color: aquamarine;
-            color: black;
+            background-color: #3C7FE8;
+            color: white;
         }
 
         a{

@@ -3,8 +3,17 @@
 require_once '../config/config.php';
 require_once ROOT . FOLDER_PATH .'/models/perguntaModel.php';
 require_once ROOT . FOLDER_PATH .'/controllers/perguntaController.php';
+require_once ROOT . FOLDER_PATH .'/models/usuarioModel.php';
+require_once ROOT . FOLDER_PATH .'/controllers/usuarioController.php';
 
 session_start();
+
+$objusuario = new usuarioController;
+$objusuario->verificarLogged(); //Verifica se há alguem logado, caso não tenha é redirecionado para a tela home.php
+$email = $_SESSION['email'];
+$objusuario->verificarPerfil($email);
+
+
 $obj = new perguntaController;
 $result = $obj->consultaPerguntasC();
 $nova_pergunta = $result->rowCount() +1;
@@ -31,7 +40,10 @@ if(isset($_POST['submit'])){
     <style>
         body{
               font-family: Arial, Helvetica, sans-serif;
-              background-image: linear-gradient(45deg, #3C7FE8, #16e7c4);
+              /* background-image: linear-gradient(45deg, #3C7FE8, #16e7c4); */
+              background-image: url('../imagens/test5.jpeg');
+              background-size: 100% 100%; /* Ajusta o tamanho da imagem para cobrir todo o corpo */
+              background-repeat: no-repeat; /* Evita a repetição da imagem */
               font-size: 15px;
               height: 100vh;
               
@@ -102,7 +114,7 @@ if(isset($_POST['submit'])){
         label{
           /* background-color: red; */
           margin-left: 15px;     
-          color: black;   
+          color: white;   
           font-size: 20px; 
         }
 
@@ -126,7 +138,7 @@ if(isset($_POST['submit'])){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <div class="titulo_ger">
     <a href="telainicio.php">
-    <img class="logo3r" src="../imagens/3rlogo.png" alt="Logo 3R">
+    <img class="logo3r" src="../imagens/logoblack.png" alt="Logo 3R">
     </a>
     <h1 class="titulo_superior">Gerenciamento de Perguntas</h1>
     <h2 class="titulo_usuario">Usuário: <?php echo $primeiroNome;?></h2>

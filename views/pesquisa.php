@@ -2,10 +2,16 @@
         require_once '../config/config.php';
         require_once ROOT . FOLDER_PATH .'/models/perguntaModel.php';
         require_once ROOT . FOLDER_PATH .'/controllers/perguntaController.php';
+        require_once ROOT . FOLDER_PATH .'/models/usuarioModel.php';
+        require_once ROOT . FOLDER_PATH .'/controllers/usuarioController.php';
         
         session_start();
         $logado = $_SESSION['email'];
         $cod_pesquisa = time();
+
+        $objusuario = new usuarioController;
+
+        $objusuario->verificarLogged();
 
         $obj = new perguntaController;
         $result = $obj->consultaPerguntasC();
@@ -41,7 +47,10 @@
 
         body {
         font-family: Arial, Helvetica, sans-serif;
-        background-image: linear-gradient(45deg, #3C7FE8, #16e7c4);
+        /* background-image: linear-gradient(45deg, #3C7FE8, #16e7c4); */
+        background-image: url('../imagens/pesquisafundo.png');
+        background-size: cover; /* Ajusta o tamanho da imagem para cobrir todo o corpo */
+        background-repeat: no-repeat; /* Evita a repetição da imagem */
         height: auto;
         }
 
@@ -60,7 +69,8 @@
         .logo3r {
         position: relative;
         height: auto;
-        width: 80px;
+        width: 70px;
+        margin: 3px;
         }
 
         .botaosair{
@@ -99,7 +109,7 @@
         }
 
         .inputSubmit{
-        background-color: #2C55F5;
+        background-color: rgb(36,51,114);
         border: none;
         color: white;
         border-radius: 5px;
@@ -111,7 +121,7 @@
        }
 
        .inputSubmit:hover{
-        background-color: deepskyblue;
+        background-color: grey;
         cursor: pointer;
        }
 
@@ -131,7 +141,7 @@
        }
 
        .r_fechada:hover{
-        background-color: #852CF5;
+        background-color: grey;
        }
 
 
@@ -150,8 +160,9 @@
 
        input[type="radio"]:checked + label {
         font-size: 18px;
-        background-color: #852CF5;
+        background-color: rgb(36,51,114);
         border: 2px solid white;
+        color: white;
         }
 
         input[type="radio"] {
@@ -159,9 +170,11 @@
         }
 
         fieldset{
+            background-color: rgba(27,27,27,0.8);
+            border-radius: 15px;
             margin-top: 10px;
             padding: 10px;
-            border: 2px groove LightGray;
+            border: 4px double white;
         }
         
         </style>
@@ -170,7 +183,7 @@
         
         <div class="container1">
             <a href="telainicio.php">
-                <img class="logo3r" src="../imagens/3rlogo.png" alt="Logo 3R">
+                <img class="logo3r" src="../imagens/logoblack.png" alt="Logo 3R">
             </a>
             <h1 class="titulopag">Formulário de Pesquisa de Satisfação</h1>
             <a href="../config/sair.php" class="botaosair">Sair</a>

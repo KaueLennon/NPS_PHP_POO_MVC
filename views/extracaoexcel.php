@@ -21,11 +21,9 @@ $primeiroNome = $_SESSION['primeironome'];
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
         body{
-              font-family: Arial, Helvetica, sans-serif;
-              background-image: linear-gradient(45deg, #3C7FE8, #16e7c4);
-              font-size: 15px;
-              height: 100vh;
-              
+          background-image: url('../imagens/fundoexcel.jpg');
+          background-size: cover; /* Ajusta o tamanho da imagem para cobrir todo o corpo */
+          background-repeat: no-repeat; /* Evita a repetição da imagem */
         }
 
         .titulo_superior {
@@ -59,7 +57,7 @@ $primeiroNome = $_SESSION['primeironome'];
         height: auto;
         width: 80px;
         margin-right: 350px;
-        top: 8px;
+        top: 3px;
         }
 
         .titulo_datas{
@@ -77,9 +75,11 @@ $primeiroNome = $_SESSION['primeironome'];
         }
 
         fieldset{
-            margin-top: 10px;
+            margin: 100px 200px 100px 200px;
             padding: 10px;
-            border: 2px groove LightGray;
+            border: 2px solid black;
+            border-radius: 15px;
+            background-color: rgba(182,182,182,0.3);
         }
 
                 /* Estilo geral */
@@ -110,6 +110,7 @@ $primeiroNome = $_SESSION['primeironome'];
         /* Adicione ícones ou estilos adicionais conforme necessário */
 
           label{
+            color: black;
             font-weight: bold;
           }
 
@@ -118,7 +119,7 @@ $primeiroNome = $_SESSION['primeironome'];
   <body>
     <div class="titulo_ger">
     <a href="telainicio.php">
-    <img class="logo3r" src="../imagens/3rlogo.png" alt="Logo 3R">
+    <img class="logo3r" src="../imagens/logoblack.png" alt="Logo 3R">
     </a>
     <h1 class="titulo_superior">Extração de Dados - NPS</h1>
     <h2 class="titulo_usuario">Usuário: <?php echo $primeiroNome;?></h2>
@@ -131,7 +132,7 @@ $primeiroNome = $_SESSION['primeironome'];
             <input type="date" name="datainicio" id="datainicio" required>
             <label for="datainicio">Data Fim</label>
             <input type="date" name="datafim" id="datafim" required>
-            <input  class="btn btn-secondary" type="submit" name="submitexcel" id="submitexcel" value="Exportar">
+            <input  class="btn btn-primary" type="submit" name="submitexcel" id="submitexcel" value="Exportar">
         </form>
     </div>
     </fieldset>

@@ -3,9 +3,15 @@
 require_once ('../config/config.php');
 require_once ROOT . FOLDER_PATH .'/controllers/usuarioController.php';
 
+session_start();
+
 $id = $_GET['id'];
 
 $obj = new usuarioController;
+
+$obj->verificarLogged(); //Verifica se há alguem logado, caso não tenha é redirecionado para a tela home.php
+$email = $_SESSION['email'];
+$obj->verificarPerfil($email);
 
 //metodo para relizar um SELECT com a ID do usuario selecionado na tela ger_usuario.php
 $result = $obj->consultarUsuarioIDC($id);
@@ -58,7 +64,11 @@ if(isset($_POST['update'])){
     <style>
         body{
             font-family: Arial, Helvetica, sans-serif;
-            background-image: linear-gradient(to right, #3C7FE8, #16e7c4);
+            /* background-image: linear-gradient(to right, #3C7FE8, #16e7c4); */
+            background-image: url('../imagens/fundoembacado.png');
+            background-size: cover; /* Ajusta o tamanho da imagem para cobrir todo o corpo */
+            background-repeat: no-repeat; /* Evita a repetição da imagem */
+            background-attachment: fixed; /* Mantém a imagem fixa mesmo ao rolar a página */
         }
 
         .box{
