@@ -117,7 +117,7 @@ class UsuarioModel  extends Connect {
         function cadastrarUsuario($nome, $senha, $email, $telefone, $sexo, $data_nasc, $cidade, $estado, $endereco, $perfil){
             $sqlSelect = $this->connection->query("INSERT INTO $this->table (nome, senha, email, telefone, sexo, data_nasc, cidade, estado,endereco,perfil) VALUES ('$nome', '$senha', '$email', '$telefone', '$sexo', '$data_nasc', '$cidade', '$estado', '$endereco', '$perfil') ");
             $resultQuery = $sqlSelect->fetch(PDO::FETCH_ASSOC);
-            return $resultQuery;
+            return true;
         }
 
         //metodo utilizado no telainicio.php
@@ -130,8 +130,12 @@ class UsuarioModel  extends Connect {
         //metodo para realizar o login do ususario na tela home.php
         function login($email, $senha){
             $sqlLogin = $this->connection->query("SELECT * FROM $this->table WHERE email = '$email' and senha = '$senha'");
-            $resultQuery = $sqlLogin->fetch(PDO::FETCH_ASSOC);
-            return $resultQuery;
+            $resultQuery = $sqlLogin;
+            if($resultQuery->rowCount() > 0){
+                return true;
+            } else {
+                return false;
+            }
         }
 
         //metodo para consultar TODOS os usuarios e exibir na tela ger_usuario.php
@@ -168,12 +172,13 @@ class UsuarioModel  extends Connect {
             endereco = '$endereco',
             perfil = '$perfil'
         WHERE idusuario = '$id'");
+        return true;
         }
 
         // Metodo para deletar o usuario selecionado na pag ger_usuario.php conforme a id dele (resgatada no GET_ID)
         function deleteUsuario($id) {
             try {
-                    $stmt = $this->connection->prepare("DELETE FROM usuario WHERE idusuario = :id");
+                    $stmt = $this->connection->prepare("DELETE FROM $this->table WHERE idusuario = :id");
                     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
                     $stmt->execute();

@@ -22,11 +22,6 @@ class usuarioController {
     function consultaEmailC($email){
         $result = $this->model->consultaEmail($email);
         return $result;
-        if($result){
-            return $result;
-        }else {
-            return false;
-        }
     }
 
     //Metodo para verificar se esta logado no sistema
