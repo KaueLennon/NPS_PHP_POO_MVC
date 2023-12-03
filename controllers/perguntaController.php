@@ -1,7 +1,9 @@
 <?php
 
-require_once ("../config/config.php");
-require_once ROOT . FOLDER_PATH .'/models/perguntaModel.php';
+// require_once ("../config/config.php");
+// require_once ROOT . FOLDER_PATH .'/models/perguntaModel.php';
+
+require_once 'C:/xampp/htdocs/Pesquisa_NPS/models/perguntaModel.php';
 
 class perguntaController {
 private $modelo;

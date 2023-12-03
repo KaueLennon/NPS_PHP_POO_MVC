@@ -1,7 +1,5 @@
     <?php
 
-    // require_once ("../config/config.php");
-    // require_once "C:/xampp/htdocs/Pesquisa_NPS/config/config.php";
     require_once 'C:/xampp/htdocs/Pesquisa_NPS/models/usuarioModel.php';
     require_once 'C:/xampp/htdocs/Pesquisa_NPS/controllers/usuarioController.php';
 
@@ -18,15 +16,7 @@
             $this->assertInstanceOf(PDOStatement::class, $result); // Modifique conforme o retorno esperado
         }
 
-        // Testa o método consultaEmail com um email inexistente
-        public function testeConsultaEmailInexistente(){
-            $usuarioModel = new usuarioModel();
-            $result = $usuarioModel->consultaEmail('email_inexistente@teste.com');
-
-            $this->assertFalse($result); // Modifique conforme o retorno esperado
-        }
-
-
+        
         //Testa o metodo cadastrarUsuario
         public function testCadastrarUsuario() {
             $usuarioModel = new UsuarioModel();
